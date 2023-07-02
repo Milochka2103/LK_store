@@ -10,7 +10,6 @@ const App = () => {
   const [isSignIn, setIsSignIn] = useState(false)
   return (
   <>
-  {/* <Navigation /> */}
     <div className="App">
       {
         isSignIn ?
