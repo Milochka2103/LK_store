@@ -1,25 +1,50 @@
 import { useState } from 'react';
 import './App.css';
-import { SignIn } from './SignIn/SignIn';
 import 'tachyons';
-import { Register } from './Register/Register';
 import { AccountPage } from './AccountPage/AccountPage';
-/* import { Navigation } from './Navigation/Navigation'; */
 
 const App = () => {
-  const [isSignIn, setIsSignIn] = useState(false)
+  const [route, setRoute] = useState("signin");
+  const [id, setId] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [isSignIn, setIsSignIn] = useState(false);
+
+  const resetValues = () => {
+    setFirstname("");
+    setLastname("");
+    setId("");
+    setRoute("signin")
+  }
+
+  const loadUser = (data) => {
+    setId(data.id);
+    setFirstname(data.firstname)
+    setLastname(data.lastname);
+  }
+
+  const onChangeRoute = (route) => {
+    if (route === 'signout') {
+      resetValues();
+    } else if (route === "home") {
+      setIsSignIn(true);
+    }
+    setRoute(route)
+  }
   return (
-  <>
     <div className="App">
-      {
-        isSignIn ?
-            // <SignIn />
-            <AccountPage />
-          : <Register />
-      }
-      </div>
-    </>
+        <AccountPage loadUser={loadUser} />
+    </div>
   );
 }
 
 export default App;
+{/*
+      {route === "home" ? (
+        <AccountPage firstname={firstname} lastname={lastname} />
+      ) : route === "signin" || route === "signout" ? (
+        <Register onChangeRoute={onChangeRoute} loadUser={loadUser} />
+      ) : (
+        <SignIn onChangeRoute={onChangeRoute} loadUser={loadUser} />
+      )}
+    </div> */}

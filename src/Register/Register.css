@@ -1,0 +1,14 @@
+h1 {
+  text-align: center;
+  justify-content: center;
+}
+
+img {
+  height: 50px;
+  width: 50px;
+  border-radius: 60%;
+}
+
+.font {
+  font-size: 30px;
+}
