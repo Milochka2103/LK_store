@@ -1,0 +1,18 @@
+.layout {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-right: 30px;
+}
+
+
+.filters {
+  width: 300px;
+}
+
+.jackets {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 20px;
+  justify-content: space-between;
+}

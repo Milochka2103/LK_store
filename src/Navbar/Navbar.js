@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import './Navbar.css';
+import { ShoppingCart } from 'phosphor-react';
 
 export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand">LK</a>
+        <Link to="/home" className="nav-link active" aria-current="page">
+          LK
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,16 +24,16 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page">
+              <Link to="/home" className="nav-link active" aria-current="page">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <Link to="/signin" className="nav-link">
                 Profile
               </Link>
             </li>
-            <li className="nav-item dropdown">
+            {/* <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
                 id="navbarDropdown"
@@ -48,6 +51,12 @@ export const Navbar = () => {
                   <a className="dropdown-item">Another action</a>
                 </li>
               </ul>
+            </li> */}
+            <li className="nav-item">
+              <Link to="/cart" className="nav-link">
+                <ShoppingCart size={32} />
+                  Shopping cart
+              </Link>
             </li>
           </ul>
           <form className="d-flex">
