@@ -9,7 +9,7 @@ export const CartItem = ({ id, title, price }) => {
   return (
     <div className="cartItem">
       <img alt="jacket" src={Jacket_photo} className="goods" />
-      <div classname="goodDescription">
+      <div className="goodDescription">
         <h2>{title}</h2>
       </div>
       <div>

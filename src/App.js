@@ -1,46 +1,23 @@
-import { useState } from 'react';
-import './App.css';
-import 'tachyons';
-import { AccountPage } from './AccountPage/AccountPage';
-import { BrowserRouter } from 'react-router-dom';
-import { ShopContextProvider } from './context/shop-context';
+import "./App.css";
+import "tachyons";
+import { AccountPage } from "./AccountPage/AccountPage";
+import { BrowserRouter } from "react-router-dom";
+import { LoadUserProvider } from "./context/load-user-context";
+import { useFetchJackets } from "./context/noContext";
+import { useEffect, useState } from "react";
 
 const App = () => {
-  const [/* route */, /* setRoute */] = useState("signin");
-  const [/* id */, setId] = useState("");
-  const [/* firstname */, setFirstname] = useState("");
-  const [/* lastname */, setLastname] = useState("");
-  const [/* isSignIn */, /* setIsSignIn */] = useState(false);
 
-/*   const resetValues = () => {
-    setFirstname("");
-    setLastname("");
-    setId("");
-    setRoute("signin")
-  }
- */
-  const loadUser = (data) => {
-    setId(data.id);
-    setFirstname(data.firstname)
-    setLastname(data.lastname);
-  }
-
-/*   const onChangeRoute = (route) => {
-    if (route === 'signout') {
-      resetValues();
-    } else if (route === "home") {
-      setIsSignIn(true);
-    }
-    setRoute(route)
-  } */
   return (
     <div className="App">
-        <BrowserRouter>
-          <AccountPage loadUser={loadUser} />
-        </BrowserRouter>
+      <BrowserRouter>
+        <LoadUserProvider>
+          <AccountPage />
+        </LoadUserProvider>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
 /*

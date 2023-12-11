@@ -7,10 +7,11 @@ export const Jacket = ({
   title,
   price,
   currency = "EUR",
-  addToCart,
   cartItems,
+  addToCart
 }) => {
-  const cartItemAmount = cartItems[id]
+  const cartItemAmount = cartItems[id];
+
   return (
     <div>
       <div className="blazerCard">

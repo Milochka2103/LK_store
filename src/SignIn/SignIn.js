@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./SignIn.css";
 import { Link, useNavigate } from "react-router-dom";
+import { LoadUserContext } from "../context/load-user-context";
 
-export const SignIn = ({ loadUser, onChangeRoute }) => {
+export const SignIn = () => {
+  const { setUserdata, setIsSignIn } = useContext(LoadUserContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,24 +19,39 @@ export const SignIn = ({ loadUser, onChangeRoute }) => {
     setPassword(e.target.value);
   };
 
-  const onSubmitSignin = () => {
+  const handleSignin = (e) => {
+    e.preventDefault();
     fetch("http://localhost:3000/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: email,
-        password: password,
+        email,
+        password,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Login failed");
+        }
+        return response.json();
+      })
       .then((user) => {
         if (user.id) {
-          loadUser(user)
-          navigate("/profile")
+          const expirationDate = new Date();
+          expirationDate.setDate(expirationDate.getDate()+1)
+          document.cookie = `userData=${encodeURIComponent(
+            JSON.stringify(user)
+          )}; expires=${expirationDate.toUTCString()}; path=/`;
+          setUserdata(user);
+          setIsSignIn(true);
+          navigate("/profile");
         }
       })
+      .catch((error) => {
+        console.error("Error during login", error.message);
+      });
   };
 
   return (
@@ -75,7 +93,7 @@ export const SignIn = ({ loadUser, onChangeRoute }) => {
               className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
               type="submit"
               value="Sign in"
-              onClick={onSubmitSignin}
+              onClick={handleSignin}
             />
           </div>
           <div className="lh-copy mt3">

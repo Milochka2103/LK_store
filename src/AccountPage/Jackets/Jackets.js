@@ -3,6 +3,7 @@ import { Jacket } from "./Jacket/Jacket";
 import "./Jackets.css";
 import { AddForm } from "../AddForm/AddForm";
 import { ShopContext } from "../../context/shop-context";
+import { LoadUserContext } from "../../context/load-user-context";
 
 export const Jackets = () => {
   const { addToCart, blazers, setBlazers, cartItems } = useContext(ShopContext);
@@ -20,9 +21,13 @@ export const Jackets = () => {
     } else {
       return blazers;
     }
-  };
+  }
 
   const sortedJackets = onSortbyPrice();
+/* 
+  if (!cartItems || !blazers) {
+    return <div>Loading...</div>; // You can replace this with a loading indicator or redirect if needed
+  } */
 
   return (
     <div className="layout">
@@ -81,8 +86,8 @@ export const Jackets = () => {
                 title={blazer.title}
                 price={blazer.price}
                 currency={blazer.currency}
-                addToCart={addToCart}
                 cartItems={cartItems}
+                addToCart={addToCart}
               />
             );
           })}

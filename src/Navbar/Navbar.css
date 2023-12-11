@@ -1,3 +1,9 @@
 .input:active {
   background-color: rgb(117 117 117);
 }
+
+.logoutBtn {
+  outline: none;
+  border: 0;
+  background: transparent;
+}

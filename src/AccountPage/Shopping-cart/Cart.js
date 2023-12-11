@@ -2,10 +2,16 @@ import React, { useContext } from "react";
 import { CartItem } from "./CartItem";
 import { ShopContext } from "../../context/shop-context";
 import './Cart.css';
+import { LoadUserContext } from "../../context/load-user-context";
 
 export const Cart = () => {
-  const { blazers, setCartItems, cartItems, getTotalCartAmount } =
+  const { blazers, setCartItems, cartItems, getTotalCartAmount} =
     useContext(ShopContext);
+  
+  const { userData } = useContext(LoadUserContext);
+
+  const user_id = userData.id;
+  console.log(user_id)
 
   return (
     <div className="cart">

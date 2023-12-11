@@ -1,29 +1,29 @@
 import React, { createContext, useEffect, useState } from "react";
+import { useFetchJackets } from "./noContext";
 
 export const ShopContext = createContext(null);
   
 export const ShopContextProvider = (props) => {
-  const [blazers, setBlazers] = useState([]);
-  const [cartItems, setCartItems] = useState({});
+  const { blazers, setBlazers, cartItems, setCartItems } = useFetchJackets();
+  
+  /* const handleChangeCartItem = (e) => {
+    e.preventDefault();
 
-  useEffect(() => {
-    fetch("http://localhost:3000/blazers", {
-      method: "get",
+    fetch("http://localhost:3000/blazer", {
+      method: "put",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        user_id: user_id,
+        cartItem_id: cartItem_id,
+        count: count
+      }),
     })
       .then((response) => response.json())
-      .then((blazers) => {
-        setBlazers(blazers);
-        let cart = {};
-        blazers.forEach((blazer, index) => {
-          cart[blazer.id] = 0;
-        });
-        setCartItems(cart);
-      });
-  }, []);
-
+      .then((blazer) => console.log(blazer[0]));
+  };
+ */
   const getTotalCartAmount = () => {
     let totalAmount = 0;
     for (const item in cartItems) {

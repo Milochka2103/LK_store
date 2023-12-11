@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import './Navbar.css';
-import { ShoppingCart } from 'phosphor-react';
+import "./Navbar.css";
+import { ShoppingCart } from "phosphor-react";
+import { LoadUserContext } from "../context/load-user-context";
 
 export const Navbar = () => {
+  const { isSignIn, setIsSignIn, setUserdata } = useContext(LoadUserContext);
+
+
+  const handleLogOut = () => {
+    document.cookie =
+      "userData=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    setIsSignIn(false);
+    setUserdata(null);
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -29,9 +40,15 @@ export const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/signin" className="nav-link">
-                Profile
-              </Link>
+              {isSignIn ? (
+                <Link to="/signin" className="nav-link">
+                  Profile
+                </Link>
+              ) : (
+                <Link to="/profile" className="nav-link">
+                  Profile
+                </Link>
+              )}
             </li>
             {/* <li className="nav-item dropdown">
               <a
@@ -55,8 +72,20 @@ export const Navbar = () => {
             <li className="nav-item">
               <Link to="/cart" className="nav-link">
                 <ShoppingCart size={32} />
-                  Shopping cart
+                Shopping cart
               </Link>
+            </li>
+            <li className="nav-item">
+              <button
+                onClick={() => {
+                  handleLogOut()
+                }}
+                className="logoutBtn"
+              >
+                <Link to="/signin" className="nav-link">
+                  Log out
+                </Link>
+              </button>
             </li>
           </ul>
           <form className="d-flex">
@@ -74,4 +103,4 @@ export const Navbar = () => {
       </div>
     </nav>
   );
-}
+};

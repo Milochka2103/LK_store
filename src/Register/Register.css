@@ -12,3 +12,90 @@ img {
 .font {
   font-size: 30px;
 }
+
+section {
+  width: 100%;
+  max-width: 400px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form button,
+form textarea {
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+form label,
+form button {
+  margin-top: 1rem;
+}
+
+.link {
+  color: #fff;
+}
+
+.buttonRegister {
+  padding: 0.5rem;
+}
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: rgb(117 117 117);
+    color: #fff;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+    width: max-content;
+}
+
+.instructions > svg {
+    margin-right: 0.25rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.hide {
+    display: none;
+}
+
+.valid {
+    color: limegreen;
+    margin-left: 0.25rem;
+}
+
+.invalid {
+    color: red;
+    margin-left: 0.25rem;
+}
+
+.errmsg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.line {
+    display: inline-block;
+}
